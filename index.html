@@ -9,31 +9,47 @@
 
     <!--bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     
-    <title>Title</title>
-
-    <style>
-        p {
-            background-color:antiquewhite;
-        }
-    </style>
-
-    <script>
-        function hello()
-        {
-            
-            console.log("Hello, world");
-        }
-    </script>
+    
+    <title>To Do</title>
 </head>
 <body>
-    <h1 style="background-color:purple">This is a heading</h1>
-    <input type="text" id="textbox">
-    <button type="button" class="btn btn-primary">Enter</button>
-    <p>This is a paragraph. </p>
-    <p>Click <a href="http://google.com">here</a> to visit Google.</p>
-    <button type="button" class="btn btn-primary">This is a bootstrap button</button>
-    <a href="https://getbootstrap.com/" class="btn btn-primary">This is a link that looks like a button.</a>
+    <div class="container">
+    <div id="newtask">
+        <input type="text" placeholder="Task to be done..">
+        <button id="push">Add</button>
+    </div>
+    <div id="tasks"></div>
+    </div>
 
-</body>
-</html>
+    <script type="text/javascript">
+    document.querySelector('#push').onclick = function(){
+        if(document.querySelector('#newtask input').value.length == 0){
+        alert("Please Enter a Task")
+    }
+
+    else{
+        document.querySelector('#tasks').innerHTML += `
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+                <button class="delete">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+        `;
+
+        var current_tasks = document.querySelectorAll(".delete");
+        for(var i=0; i<current_tasks.length; i++){
+            current_tasks[i].onclick = function(){
+                this.parentNode.remove();
+            }
+        }
+    }
+}
+
+    </script>
+    </body>
+   
